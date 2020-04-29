@@ -3,6 +3,7 @@ import morgan from "morgan";
 import helmet from "helmet";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
+import { userRouter } from "./router";
 const app = express();
 
 const betweenHome = (req, res, next) => {
@@ -18,6 +19,7 @@ app.use(morgan("common"));
 
 app.get("/", (req, res) => res.send("Hello World!"));
 app.use(betweenHome);
+app.use("/user", userRouter);
 app.get("/test", (req, res) => res.send("This is test!"));
 
 export default app;
