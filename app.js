@@ -3,13 +3,13 @@ import morgan from "morgan";
 import helmet from "helmet";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
-import { userRouter } from "./router";
-const app = express();
 
-const betweenHome = (req, res, next) => {
-  console.log("I'm between");
-  next();
-};
+import globalRouter from "./routers/globalRouter";
+import userRouter from "./routers/userRouter";
+import videoRouter from "./routers/videoRouter";
+import routes from "./routes";
+
+const app = express();
 
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -17,9 +17,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(morgan("common"));
 
-app.get("/", (req, res) => res.send("Hello World!"));
-app.use(betweenHome);
-app.use("/user", userRouter);
-app.get("/test", (req, res) => res.send("This is test!"));
+app.use(routes.home, globalRouter);
+app.use(routes.users, userRouter);
+app.use(routes.videos, videoRouter);
 
 export default app;
