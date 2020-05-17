@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
 
-mongoose.connect("mongodb://localhost:27017/wetube", {
+mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
   useFindAndModify: false,
 });
@@ -8,7 +10,7 @@ mongoose.connect("mongodb://localhost:27017/wetube", {
 const db = mongoose.connection;
 
 db.once("open", () => {
-  console.log("👍 Connected to DB");
+  console.log("✅ Connected to DB");
 });
 db.on("error", (error) => {
   console.error(`🚨 Error on DB Connection: ${error}`);
