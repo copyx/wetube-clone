@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    title #{pageTitle} | #{siteName}
+    meta(
+      http-equiv="Content-Security-Policy",
+      content="default-src 'self' data: gap: https://*.googleapis.com/ https://*.fontawesome.com/ https://*.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com/ https://*.fontawesome.com/; media-src *; img-src 'self' data: content:; "
+    )
+    script(
+      src="https://kit.fontawesome.com/ecf49bca79.js",
+      crossorigin="anonymous"
+    )
+
+  body
+    include ../partials/header
+    main
+      block content
+    include ../partials/footer
