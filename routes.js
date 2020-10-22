@@ -8,9 +8,9 @@ const routes = {
 
   // Users
   users: "/users",
-  userDetail: "/:id",
   editProfile: "/edit-profile",
   changePassword: "/change-password",
+  userDetail: "/:id",
 
   // Videos
   videos: "/videos",
