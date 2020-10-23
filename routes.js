@@ -10,12 +10,12 @@ const routes = {
   users: "/users",
   editProfile: "/edit-profile",
   changePassword: "/change-password",
-  userDetail: "/:id",
+  userDetail: (id) => (id ? id : "/:id"),
 
   // Videos
   videos: "/videos",
   upload: "/upload",
-  videoDetail: "/:id",
+  videoDetail: (id) => (id ? id : "/:id"),
   editVideo: "/:id/edit",
   deleteVideo: "/:id/delete",
 };
