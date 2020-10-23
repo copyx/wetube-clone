@@ -9,9 +9,9 @@ header.header
     ul
       if user.isAuthenticated
         li
-          a(href=routes.upload) Upload
+          a(href=routes.videos + routes.upload) Upload
         li
-          a(href=routes.userDetail(user.id)) Profile
+          a(href=routes.users + routes.userDetail(user.id)) Profile
         li
           a(href=routes.logout) Log Out
       else
