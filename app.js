@@ -20,6 +20,7 @@ app.use(
         scriptSrc: ["'self'", "https://*.fontawesome.com/"],
         styleSrc: ["'self'", "https://*.fontawesome.com/"],
         fontSrc: ["'self'", "https://*.fontawesome.com/"],
+        mediaSrc: ["'self'", "https://archive.org/", "https://*.archive.org/"],
       },
     },
   })
