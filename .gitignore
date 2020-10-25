@@ -120,3 +120,5 @@ package-lock.json
 .vscode
 *.code-workspace
 .DS_Store
+
+uploads/
