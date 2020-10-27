@@ -7,8 +7,9 @@ block content
       method="post",
       enctype="multipart/form-data"
     )
-      label(form="file") Video File
-      input#file(type="file", name="videoFile", required, accept="video/*")
+      .fileUpload
+        label(form="file") Video File
+        input#file(type="file", name="videoFile", required, accept="video/*")
       input(type="text", placeholder="Title", name="title", required)
       textarea(name="description", placeholder="Description", required)
       input(type="submit", value="Upload Video")
