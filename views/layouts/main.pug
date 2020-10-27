@@ -6,9 +6,11 @@ html
       src="https://kit.fontawesome.com/ecf49bca79.js",
       crossorigin="anonymous"
     )
+    link(rel="stylesheet", href="/static/styles.css")
 
   body
     include ../partials/header
     main
       block content
     include ../partials/footer
+    script(src="/static/main.js")
