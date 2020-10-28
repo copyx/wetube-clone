@@ -131,6 +131,10 @@ table {
 a {
   all: unset;
   cursor: pointer;
+  &:visited,
+  &:active {
+    color: white;
+  }
 }
 
 *,

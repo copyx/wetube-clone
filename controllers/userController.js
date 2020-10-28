@@ -30,15 +30,26 @@ export const postLogin = passport.authenticate("local", {
   failureRedirect: routes.login,
   successRedirect: routes.home,
 });
-export const logout = (req, res) => {
-  // TODO: Process log out
+
+export const getGithubLogin = passport.authenticate("github");
+export const getGithubLoginCallback = passport.authenticate("github", {
+  failureRedirect: routes.login,
+});
+export const successGithubAuthenticate = (req, res) => {
   res.redirect(routes.home);
 };
 
-// TODO: Check if it needs
-// export const users = (req, res) => res.render("users", { pageTitle: "Users" });
-export const userDetail = (req, res) =>
+export const logout = (req, res) => {
+  req.logout();
+  res.redirect(routes.home);
+};
+
+export const getMe = (req, res) => {
+  res.render("userDetail", { pageTitle: "My Profile" });
+};
+export const userDetail = (req, res) => {
   res.render("userDetail", { pageTitle: "User Detail" });
+};
 export const editProfile = (req, res) =>
   res.render("editProfile", { pageTitle: "Edit Profile" });
 export const changePassword = (req, res) =>

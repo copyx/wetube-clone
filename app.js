@@ -27,6 +27,7 @@ app.use(
         styleSrc: ["'self'", "https://*.fontawesome.com/"],
         fontSrc: ["'self'", "https://*.fontawesome.com/"],
         mediaSrc: ["'self'", "https://archive.org/", "https://*.archive.org/"],
+        imgSrc: ["'self'", "https://*.githubusercontent.com/"],
       },
     },
   })
