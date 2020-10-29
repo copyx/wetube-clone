@@ -24,5 +24,8 @@
   .social-login--facebook {
     background-color: #3a5998;
     color: white;
+    &:disabled {
+      background-color: #999999;
+    }
   }
 }
