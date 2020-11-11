@@ -41,8 +41,11 @@ export const postUpload = async (req, res) => {
       fileUrl: path,
       title,
       description,
+      creator: req.user.id,
     });
 
+    req.user.videos.push(newVideo.id);
+    req.user.save();
     res.redirect(routes.videos + routes.videoDetail(newVideo.id));
   } catch (error) {
     console.error(`❌ Error: ${error}`);
@@ -56,7 +59,7 @@ export const videoDetail = async (req, res) => {
   } = req;
 
   try {
-    const video = await Video.findById(id);
+    const video = await Video.findById(id).populate("creator");
     console.log(video);
     res.render("videoDetail", { pageTitle: video.title, video });
   } catch (error) {
@@ -72,7 +75,12 @@ export const getEditVideo = async (req, res) => {
 
   try {
     const video = await Video.findById(id);
-    res.render("editVideo", { pageTitle: `Edit ${video.title}`, video });
+
+    if (video.creator != req.user.id) {
+      throw Error("Wrong user");
+    } else {
+      res.render("editVideo", { pageTitle: `Edit ${video.title}`, video });
+    }
   } catch (error) {
     console.error(`❌ Error: ${error}`);
     res.redirect(routes.videos + routes.videoDetail(id));
@@ -100,7 +108,7 @@ export const deleteVideo = async (req, res) => {
   } = req;
 
   try {
-    await Video.findOneAndDelete({ _id: id });
+    await Video.findOneAndDelete({ _id: id, creator: req.user.id });
     res.redirect(routes.home);
   } catch (error) {
     console.error(`❌ Error: ${error}`);
