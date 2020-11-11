@@ -24,7 +24,14 @@ app.use(
       directives: {
         defaultSrc: ["'self'"],
         scriptSrc: ["'self'", "https://*.fontawesome.com/"],
-        styleSrc: ["'self'", "https://*.fontawesome.com/"],
+        connectSrc: ["'self'", "https://*.fontawesome.com/"],
+        styleSrc: [
+          "'self'",
+          "https://*.fontawesome.com/",
+          "'sha256-AQe0kMnttwVvXWV4LutnFsTIDltiV/z7MUyXkuK3q8s='",
+          "'sha256-z/+epQIZWnuW/jjeypGIpZt1je7sws1OeK6n2RHmOMY='",
+          "'sha256-0Are7I5XVWX8M2W//5ynKqlRK4x/pFz+uk/fLMvXj3E='",
+        ],
         fontSrc: ["'self'", "https://*.fontawesome.com/"],
         mediaSrc: ["'self'", "https://archive.org/", "https://*.archive.org/"],
         imgSrc: ["'self'", "https://*.githubusercontent.com/"],
