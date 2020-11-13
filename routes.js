@@ -27,6 +27,7 @@ const routes = {
   // API
   api: "/api",
   registerView: "/:id/view",
+  addComment: "/:id/comment",
 };
 
 export default routes;
