@@ -23,6 +23,10 @@ const routes = {
   // Auth
   github: "/auth/github",
   githubCallback: "/auth/github/callback",
+
+  // API
+  api: "/api",
+  registerView: "/:id/view",
 };
 
 export default routes;
