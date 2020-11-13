@@ -31,5 +31,7 @@ block content
         input(type="text", placeholder="Add a comment")
       ul#jsCommentList.video__comments-list
         each comment in video.comments.reverse()
-          li
+          li(comment-id=comment.id)
             span= comment.text
+            if loggedUser && loggedUser.id === comment.creator.toString()
+              i.fas.fa-trash-alt.comment__delete

@@ -51,8 +51,14 @@
         padding: 15px;
         border-radius: 20px;
         border-bottom-left-radius: 0px;
+        display: flex;
+        justify-content: space-between;
         &:not(:last-child) {
           margin-bottom: 15px;
+        }
+        .comment__delete {
+          margin-left: 10px;
+          cursor: pointer;
         }
       }
     }
