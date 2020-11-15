@@ -1,6 +1,6 @@
 import aws from "aws-sdk";
 
-export const BUCKET_NAME = "wetube-00";
+export const BUCKET_NAME = process.env.AWS_S3_BUCKET_NAME;
 export const s3 = new aws.S3();
 
 export const deleteS3Object = (location) => {
