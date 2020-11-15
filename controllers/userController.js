@@ -1,6 +1,7 @@
 import routes from "../routes";
 import User from "../models/User";
 import passport from "passport";
+import { deleteS3Object } from "../aws";
 
 export const getJoin = (req, res) => res.render("join", { pageTitle: "Join" });
 export const postJoin = async (req, res, next) => {
@@ -71,16 +72,22 @@ export const getEditProfile = (req, res) =>
 
 export const postEditProfile = async (req, res) => {
   const {
+    user,
     body: { name, email },
     file,
   } = req;
 
   try {
-    await User.findByIdAndUpdate(req.user.id, {
+    await User.findByIdAndUpdate(user.id, {
       name,
       email,
-      avatarUrl: file ? file.location : req.user.avatarUrl,
+      avatarUrl: file ? file.location : user.avatarUrl,
     });
+
+    if (file) {
+      deleteS3Object(user.avatarUrl);
+    }
+
     res.redirect(routes.me);
   } catch (error) {
     console.error(error);
