@@ -116,6 +116,7 @@ export const deleteVideo = async (req, res) => {
       creator: req.user.id,
     });
     deleteS3Object(video.fileUrl);
+    await Comment.deleteMany({ _id: { $in: video.comments } });
     res.redirect(routes.home);
   } catch (error) {
     console.error(`❌ Error: ${error}`);
@@ -166,15 +167,13 @@ export const postAddComment = async (req, res) => {
   }
 };
 
-// TODO: Fix it
 export const deleteComment = async (req, res) => {
   const {
     params: { videoId, commentId },
   } = req;
 
   try {
-    // const result = await Comment.findByIdAndDelete(commentId);
-    await Comment.findById(commentId);
+    await Comment.findByIdAndDelete(commentId);
     const video = await Video.findById(videoId);
     video.comments.splice(
       video.comments.findIndex((comment) => comment.id === commentId),
