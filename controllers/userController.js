@@ -19,6 +19,7 @@ export const postJoin = async (req, res, next) => {
       await User.register(user, password);
       next();
     } catch (error) {
+      // TODO: Handle error cases
       console.error(error);
       res.redirect(routes.home);
     }
@@ -47,12 +48,16 @@ export const logout = (req, res) => {
   res.redirect(routes.home);
 };
 
-export const getMe = (req, res) => {
-  res.render("userDetail", {
-    pageTitle: "My Profile",
-    user: req.user,
-  });
+export const getMe = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).populate("videos");
+    res.render("userDetail", { pageTitle: "My Detail", user });
+  } catch (error) {
+    console.error(error);
+    res.redirect(routes.home);
+  }
 };
+
 export const userDetail = async (req, res) => {
   const {
     params: { id },
