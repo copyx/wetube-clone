@@ -34,8 +34,17 @@ app.use(
           "'sha256-0Are7I5XVWX8M2W//5ynKqlRK4x/pFz+uk/fLMvXj3E='",
         ],
         fontSrc: ["'self'", "https://*.fontawesome.com/"],
-        mediaSrc: ["'self'", "https://archive.org/", "https://*.archive.org/"],
-        imgSrc: ["'self'", "https://*.githubusercontent.com/"],
+        mediaSrc: [
+          "'self'",
+          "https://archive.org/",
+          "https://*.archive.org/",
+          "https://*.amazonaws.com",
+        ],
+        imgSrc: [
+          "'self'",
+          "https://*.githubusercontent.com/",
+          "https://*.amazonaws.com",
+        ],
       },
     },
   })
