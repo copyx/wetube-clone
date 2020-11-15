@@ -1,6 +1,7 @@
 import routes from "../routes";
 import Video from "../models/Video";
 import Comment from "../models/Comment";
+import { deleteS3Object } from "../aws";
 
 export const home = async (req, res) => {
   try {
@@ -63,7 +64,6 @@ export const videoDetail = async (req, res) => {
     const video = await Video.findById(id)
       .populate("creator")
       .populate("comments");
-    console.log(video.comments, req.user.id);
     res.render("videoDetail", { pageTitle: video.title, video });
   } catch (error) {
     console.error(`❌ Error: ${error}`);
@@ -111,7 +111,11 @@ export const deleteVideo = async (req, res) => {
   } = req;
 
   try {
-    await Video.findOneAndDelete({ _id: id, creator: req.user.id });
+    const video = await Video.findOneAndRemove({
+      _id: id,
+      creator: req.user.id,
+    });
+    deleteS3Object(video.fileUrl);
     res.redirect(routes.home);
   } catch (error) {
     console.error(`❌ Error: ${error}`);
@@ -162,6 +166,7 @@ export const postAddComment = async (req, res) => {
   }
 };
 
+// TODO: Fix it
 export const deleteComment = async (req, res) => {
   const {
     params: { videoId, commentId },
