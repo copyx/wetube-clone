@@ -5,13 +5,11 @@ const MODE = process.env.WEBPACK_ENV;
 const ENTRY_FILE = path.resolve(__dirname, "assets", "js", "main.js");
 const OUTPUT_DIR = path.join(__dirname, "static");
 const plugins = [];
-if (MODE !== "production") {
-  plugins.push(
-    new MiniCssExtractPlugin({
-      filename: "styles.css",
-    })
-  );
-}
+plugins.push(
+  new MiniCssExtractPlugin({
+    filename: "styles.css",
+  })
+);
 
 const config = {
   entry: ["@babel/polyfill", ENTRY_FILE],
