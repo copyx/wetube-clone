@@ -10,7 +10,14 @@ passport.use(
     {
       clientID: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      callbackURL: `http://localhost:3000${routes.githubCallback}`,
+      callbackURL:
+        process.env.NODE_ENV == "production"
+          ? `${process.env.ROOT_URL}:${process.env.PORT || 3000}${
+              routes.githubCallback
+            }`
+          : `http://localhost:${process.env.PORT || 3000}${
+              routes.githubCallback
+            }`,
     },
     async (accessToken, refreshToken, profile, cb) => {
       const {
