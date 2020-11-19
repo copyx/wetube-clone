@@ -7,6 +7,7 @@ import passport from "passport";
 import path from "path";
 import mongoose from "mongoose";
 import session from "express-session";
+import flash from "express-flash";
 import MongoStore from "connect-mongo";
 
 import globalRouter from "./routers/globalRouter";
@@ -67,6 +68,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 app.use(localsMiddleware);
 
