@@ -27,17 +27,18 @@ const connect = () => {
     console.log("✅ Connected to DB");
   });
 
-  db.on("close", () => {
-    console.log("🛑 Disconnected from DB");
-  });
-
   db.on("error", (error) => {
     console.error(`❌ Error: ${error}`);
   });
 };
 
-const disconnect = () => {
-  mongoose.connection.close();
+const disconnect = (callback) => {
+  mongoose.connection.close(() => {
+    console.log("🛑 Disconnected from DB");
+    if (callback) {
+      callback();
+    }
+  });
 };
 
 export default {
