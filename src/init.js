@@ -1,13 +1,6 @@
-import "@babel/polyfill";
-import "./db";
+import db from "./db";
+db.connect();
 import app from "./app";
-import dotenv from "dotenv";
-
-dotenv.config();
-
-import "./models/Video";
-import "./models/Comment";
-import "./models/User";
 
 const port = process.env.PORT || 3000;
 
